@@ -1,0 +1,140 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#173d2b">
+<title>INTERNATIONAL WOOD</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f4ed;color:#243328}
+header{background:#173d2b;color:white;text-align:center;padding:24px 12px}
+header h1{font-size:26px;margin:0}
+nav{background:#10271c;padding:14px;text-align:center}
+nav a{color:white;margin:8px;text-decoration:none;font-size:14px}
+.hero{text-align:center;padding:65px 18px;color:white;background:linear-gradient(#173d2bd9,#173d2bd9),url('https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=80') center/cover}
+.hero h2{font-size:30px}
+.hero p{line-height:1.6}
+.btn{display:inline-block;background:#d1a451;color:#14271b;padding:13px 17px;border:0;border-radius:5px;font-weight:bold;text-decoration:none;cursor:pointer}
+section{padding:30px 15px;max-width:1000px;margin:auto}
+h2{text-align:center;color:#173d2b}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}
+.card{background:white;border-radius:9px;overflow:hidden;box-shadow:0 2px 8px #0002}
+.card img{width:100%;height:180px;object-fit:cover}
+.card div{padding:16px}
+.card h3{color:#173d2b}
+.card p{line-height:1.5}
+.price{font-weight:bold;color:#94702e}
+.card button{width:100%}
+form{display:grid;gap:12px;background:white;padding:18px;border-radius:9px}
+input,select,textarea{width:100%;padding:13px;border:1px solid #bbb;border-radius:5px;font:inherit}
+footer{background:#173d2b;color:white;text-align:center;padding:24px}
+.small{text-align:center;color:#657064;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>🌳 INTERNATIONAL WOOD</h1>
+<p>Votre partenaire en bois dans le monde</p>
+</header>
+
+<nav>
+<a href="#accueil">Accueil</a>
+<a href="#catalogue">Catalogue</a>
+<a href="#devis">Demander un devis</a>
+</nav>
+
+<div class="hero" id="accueil">
+<h2>Le bois du monde à votre portée</h2>
+<p>Découvrez nos produits et demandez un devis pour vos projets.</p>
+<a class="btn" href="#catalogue">Découvrir nos bois</a>
+</div>
+
+<section id="catalogue">
+<h2>Notre catalogue</h2>
+<p class="small">Prix, essences et disponibilités à confirmer auprès du vendeur.</p>
+<div class="products">
+
+<article class="card">
+<img src="https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=700&q=80" alt="Bois">
+<div>
+<h3>Bois de construction</h3>
+<p>Pour les travaux et les projets de construction.</p>
+<p class="price">Prix sur devis</p>
+<button class="btn" onclick="selectWood('Bois de construction')">Demander un devis</button>
+</div>
+</article>
+
+<article class="card">
+<img src="https://images.unsplash.com/photo-1449247709967-d4461a6a6103?auto=format&fit=crop&w=700&q=80" alt="Bois pour menuiserie">
+<div>
+<h3>Bois pour menuiserie</h3>
+<p>Pour meubles, portes et aménagements.</p>
+<p class="price">Prix sur devis</p>
+<button class="btn" onclick="selectWood('Bois pour menuiserie')">Demander un devis</button>
+</div>
+</article>
+
+<article class="card">
+<img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=700&q=80" alt="Matériaux de construction">
+<div>
+<h3>Planches de bois</h3>
+<p>Différentes dimensions selon disponibilité.</p>
+<p class="price">Prix sur devis</p>
+<button class="btn" onclick="selectWood('Planches de bois')">Demander un devis</button>
+</div>
+</article>
+
+</div>
+</section>
+
+<section id="devis">
+<h2>Demande de devis international</h2>
+<p>Remplissez le formulaire pour préparer votre demande par e-mail.</p>
+<form id="quoteForm">
+<input id="client" placeholder="Votre nom ou entreprise" required>
+<input id="email" type="email" placeholder="Votre adresse e-mail" required>
+<input id="country" placeholder="Pays de destination" required>
+<select id="wood" required>
+<option value="">Choisir un produit</option>
+<option>Bois de construction</option>
+<option>Bois pour menuiserie</option>
+<option>Planches de bois</option>
+<option>Autre</option>
+</select>
+<input id="quantity" placeholder="Quantité souhaitée (ex. m³)" required>
+<textarea id="details" rows="4" placeholder="Dimensions, livraison et précisions"></textarea>
+<button class="btn" type="submit">Préparer ma demande</button>
+</form>
+<p class="small">La demande n'est pas enregistrée sur un serveur. Elle sera préparée dans votre application de messagerie.</p>
+</section>
+
+<footer>
+<h3>INTERNATIONAL WOOD</h3>
+<p>Commerce de bois et demandes de devis internationaux.</p>
+<p>Exportation soumise aux autorisations et réglementations applicables.</p>
+</footer>
+
+<script>
+function selectWood(name){
+document.getElementById('wood').value=name;
+document.getElementById('devis').scrollIntoView({behavior:'smooth'});
+}
+document.getElementById('quoteForm').addEventListener('submit',function(e){
+e.preventDefault();
+const val=id=>document.getElementById(id).value.trim();
+const subject=encodeURIComponent('Demande de devis - INTERNATIONAL WOOD');
+const body=encodeURIComponent(
+'Nom : '+val('client')+'\n'+
+'E-mail : '+val('email')+'\n'+
+'Pays : '+val('country')+'\n'+
+'Produit : '+val('wood')+'\n'+
+'Quantité : '+val('quantity')+'\n'+
+'Précisions : '+val('details')
+);
+window.location.href='mailto:?subject='+subject+'&body='+body;
+});
+</script>
+</body>
+</html>
